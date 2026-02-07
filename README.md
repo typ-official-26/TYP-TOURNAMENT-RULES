@@ -1,2 +1,2 @@
-# TYP-TOURNAMENT-RULES
+# RULES
 It is Mandatory to Maintain Every rules
