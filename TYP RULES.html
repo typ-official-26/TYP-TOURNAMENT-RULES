@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TYP AUCTION TOURNAMENT RULES & REGULATIONS</title>
+<style>
+/* ===== Body ===== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0d1117;
+    color: #ecf0f1;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+/* ===== Neon Title Box ===== */
+.title-box {
+    text-align: center;
+    margin: 90px auto 30px;
+    padding: 18px 25px;
+    max-width: 500px;
+    background: #0d1117;
+    border: 2px solid #3498db;
+    border-radius: 15px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #ecf0f1;
+    text-shadow: 0 0 8px #3498db;
+}
+
+/* ===== Container ===== */
+.container {
+    max-width: 720px;
+    margin: 0 auto 50px;
+    padding: 0 15px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== Rule Card ===== */
+.rule-card {
+    background: #161b22;
+    border-left: 4px solid #3498db;
+    border-radius: 10px;
+    margin-bottom: 18px;
+    padding: 18px 22px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.rule-card:hover {
+    box-shadow: 0 0 15px #3498db80;
+}
+
+.rule-card {
+    position: relative;
+}
+
+.rule-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("logo.png") no-repeat center;
+    background-size: 500px;   /* logo size */
+    opacity: 0.08;            /* watermark strength */
+    pointer-events: none;
+}
+
+.rule-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== Rule Title ===== */
+.rule-title {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #ecf0f1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rule-title::after {
+    content: '';
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+    color: #3498db;
+}
+
+/* ===== Rule Title Arrow ===== */
+.rule-card .rule-title::after {
+    content: '';
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+    color: #3498db;
+}
+
+.rule-card.open .rule-title::after {
+    transform: rotate(-180deg);
+}
+
+/* ===== Rule Details ===== */
+.rule-card .rule-details {
+    max-height: 0;
+    overflow-y: auto;
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+}
+
+.rule-card.open .rule-details {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    max-height: 500px;
+}
+
+
+/* ===== Rule Details ===== */
+.rule-details {
+    font-size: 0.95rem;
+    color: #bdc3c7;
+    line-height: 1.6;
+    max-height: 0;
+    overflow-y: auto;        /*    */
+    transition: max-height 0.35s ease, padding 0.35s ease;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* Active  */
+.rule-card.active .rule-details {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    max-height: 260px;       /*      */
+}
+
+.rule-card.active .rule-details {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    max-height: 500px;
+}
+
+/* ===== Watermark ===== */
+.watermark {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    font-size: 1.5rem;
+    color: rgba(52, 152, 219,0.07);
+    pointer-events: none;
+    z-index: 0;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 480px) {
+    .title-box { font-size: 1.3rem; padding: 15px 18px; max-width: 90%; }
+    .rule-card { padding: 15px 18px; }
+    .rule-title { font-size: 1rem; }
+    .rule-details { font-size: 0.9rem; }
+}
+</style>
+</head>
+<!-- Sidebar Toggle Button -->
+<div id="sidebar-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<!-- Sidebar -->
+<div id="sidebar">
+<h2>Menu</h2>
+  <ul>
+    <li><a href="#rule1">_________________________________</a></li>
+    <li><a href="result-submit.html">Result Submit</a></li>
+   
+    <!-- ...     -->
+  </ul>
+</div>
+  
+</div>
+<body>
+<style>
+/* ===== Sidebar Styling ===== */
+#sidebar {
+    position: fixed;
+    left: -500px;  /* hidden by default */
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background: #161b22;
+    border-right: 2px solid #3498db;
+    padding: 20px;
+    box-shadow: 2px 0 15px rgba(52,152,219,0.4);
+    transition: left 0.35s ease;
+    z-index: 999;
+}
+
+#sidebar h2 {
+    color: #3498db;
+    text-align: center;
+    margin-bottom: 20px;
+    /*      margin-top   */
+    margin-top: 50px; /*   adjust   */
+}
+
+#sidebar.active {
+    left: 0;
+}
+
+#sidebar h2 {
+    color: #3498db;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+#sidebar ul li {
+    margin: 15px 0;
+}
+
+#sidebar ul li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+#sidebar ul li a:hover {
+    color: #5dade2;
+}
+
+/* ===== Sidebar Toggle Button ===== */
+
+#sidebar-toggle {
+    position: absolute;
+    top: -65px;
+    left: 20px;
+    width: 35px;
+    height: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+#sidebar-toggle span {
+    display: block;
+    height: 4px;
+    width: 100%;
+    background: #3498db;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Hamburger => X animation */
+#sidebar-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+#sidebar-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+#sidebar-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+</style>
+
+<!-- Title Box -->
+<div class="title-box">
+    TYP AUCTION TOURNAMENT<br>RULES & REGULATIONS
+</div>
+
+<!-- Rules Container -->
+<div class="container">
+
+<!-- 13 Rule Cards -->
+<div class="rule-card" onclick="toggleDetails(this)">
+    <div class="rule-title">  </div>
+    <div class="rule-details">
+        <p><strong style="color: #5dade2;"> A)  :</strong>      -   <b>: </b></p>
+       <p><strong style="color: #5dade2;"> B)  : </strong>      ,         </p>
+        <p><strong style="color: #5dade2;"> C)    :</strong>        </p>
+    </div>
+</div>
+
+<div class="rule-card" onclick="toggleDetails(this)">
+    <div class="rule-title"> Room  Rules</div>
+    <div class="rule-details">
+       <p><strong style="color: #5dade2;">  Match Settings :</strong></p>
+        <p> MATCH TYPE  EXCELLENT</p>
+        <p>   10 MINUTES</p>
+        <p> INJURIES  OFF</p>
+        <p> EXTRA TIME & PK  OFF</p>
+        <p> NO. OF SUB INTERVALS  6</p>
+        <p> NO. OF SUBSTITUTES  6</p>
+        <p> CONDITION : HOME  EXCELLENT</p>
+        <p> CONDITION : AWAY  EXCELLENT</p>
+        
+        <p><strong style="color: #5dade2;"> Room Create : </strong></p>
+        <p>   AWAY       </p>
+        
+         <p><strong style="color: #e74c3c;"> : </strong></p>
+         <p>         </p>
+    </div>
+</div>
+
+<div class="rule-card" onclick="toggleDetails(this)">
+    <div class="rule-title"> Substitution  SWAP </div>
+    <div class="rule-details">
+        <p><strong style="color: #5dade2;"> A)      : </strong>   :   ,  ,          :  :</p>
+        
+        <p><strong>    ::: </strong>  :  : SUB/SWAP :  : </p>
+        
+        <p><strong style="color: #5dade2;"> B)     : </strong>   :   ,  ,          :  :</p>
+        <p><strong>    ::: </strong>    :  : / :   : </p>
+        
+        <p><strong style="color: #5dade2;"> C)    : </strong> SUB     SWAP   2 Sub/SWAP   TYP Sub Card  TYP Swap Card    SUB/SWAP           </p>
+    </div>
+</div>
+
+<div class="rule-card" onclick="toggleDetails(this)">
+    <div class="rule-title">Auto Win  Activity </div>
+    <div class="rule-details">
+        <p>                                              </p>
+        
+        <p>  /                  </p>
+        
+        <p>                        </p>
+        
+        <p>                              </p>
+        
+        <p><strong style="color: #5dade2;">  //  - </strong>               /               
+    </div>
+</div>
+
+<div class="rule-card" onclick="toggleDetails(this)">
+    <div class="rule-title">     </div>
+    <div class="rule-details">
+        <p> A)  /         pause                                  DEVICE INFO + USER ID  </p>
+        <p>B)           (  )                           </p>
+        <p>C)        /                    Pause        + USER ID                 + USER ID                                          </p>
+        <p>D)                      </p>
+        <p>E)                        </p>
+        <p>F)      (    )          </p>
+        <p>G)                /   </p>
+        <p>H)                           </p>
+        <P>I)                                              rematch  </p>
+        <p>J)              </p>
+      
+    </div>
+</div>
+
+<div class="rule-card" onclick="toggleDetails(this)">
+    <div class="rule-title">   </div>
+    <div class="rule-details">
+        <p>     /    ,  ,              /           </p>
+        <p>           </p>
+        <p>  TEAM                 </p>
+        <p><strong style="color: #5dade2;">       : </strong></p>
+        <p> /         </p>
+        <p>  ,  ,              </p>
+        <p>  ,       ,    ,      /        </p>
+        <p>  /  / ,  /   ,        </p>
+        <p><strong style="color: #5dade2;">     : </strong></p>
+        <p>        </p>
+        <p>                       </p>
+        <p>                                          </p>
+        <p>         </p>
+      
+    </div>
+</div>
+
+<div class="rule-card" onclick="toggleDetails(this)">
+    <div class="rule-title">Auto Clear  </div>
+    <div class="rule-details">
+        <p><strong style="color: #5dade2;">  Auto Clear  </strong>       </p>
+        <p>     Auto clear       Auto Clear                    </p>
+    </div>
+</div>
+
+<div class="rule-card" onclick="toggleDetails(this)">
+    <div class="rule-title">  </div>
+    <div class="rule-details">
+        <p>   /              AUTO LOSS                  (-)           + User id      Auto Loss   </p>
+        <p>                                               </p>
+        <p>   ,                                                user              </p>
+        <p>                                                             </p>
+        <p>              , user      </p>
+        <p>                              Auto win                     WhatsApp   </p>
+        <p>            /                      </p>
+        <p>                                   </p>
+        <p>                     Team        ,       </p>
+        <p>                      Win  </p>
+    </div>
+</div>
+
+<div class="rule-card" onclick="toggleDetails(this)">
+    <div class="rule-title"> In-Game Red  +  </div>
+    <div class="rule-details">
+        <p>                  ,    </p>
+        <p>    ,                                        </p>
+        <p>         ,   -              ,           </p>
+        
+    </div>
+</div>
+
+<div class="rule-card" onclick="toggleDetails(this)">
+    <div class="rule-title">Player Info   Info Change</div>
+    <div class="rule-details">
+        <p><strong style="color: #5dade2;">  A)  Info :</strong></p>
+        <p>  :       ( ,  )   <strong style="color: #e74c3c;">Wrong Info:</strong>          ,   Info    -  </p>
+<p> <span style="color: #f1c40f; font-weight: bold;"> :</span>        ( ,    )             </p>
+        <p>     ASAA/ASBB  /        %      </p>
+        
+    </div>
+</div>
+
+<div class="rule-card" onclick="toggleDetails(this)">
+    <div class="rule-title">Wall Formation</div>
+    <div class="rule-details">
+        <p>                          (-1)       (+1)  IN GAME DEFAULT FORMATION (---) Use   without customize. [   Match Official DECISION  FORMATION   ]</p>
+    </div>
+</div>
+
+<div class="rule-card" onclick="toggleDetails(this)">
+    <div class="rule-title">Player Replace & Ban   </div>
+    <div class="rule-details">
+        <p>                      </p>
+        <p> <strong style="color: #e74c3c;">Ban:</strong>            + MATCH RESULT EDIT      TEAM TOURNAMENT     </p>
+    </div>
+</div>
+
+<div class="rule-card" onclick="toggleDetails(this)">
+    <div class="rule-title">  </div>
+    <div class="rule-details">
+        <p>    </p>
+    </div>
+</div>
+<script>
+function toggleDetails(card) {
+    card.classList.toggle('open');  // <-- 'active' ,  
+}
+</script>
+
+</div>
+
+<!-- Watermark -->
+<div class="ending-title">
+    <div class="main">TYP CHAMPIONSHIP</div>
+    <div class="sub">PRESENT</div>
+</div>
+
+<style>
+/* ===== Ending Title ===== */
+.ending-title {
+    text-align: center;
+    margin: 40px 0 25px;
+    opacity: 0.7;
+}
+
+.ending-title .main {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #3498db;
+}
+
+.ending-title .sub {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    margin-top: 4px;
+    color: #3498db;
+}
+</style>
+
+<script>
+const sidebar = document.getElementById('sidebar');
+const toggleBtn = document.getElementById('sidebar-toggle');
+
+toggleBtn.addEventListener('click', () => {
+    toggleBtn.classList.toggle('active'); // X animation
+    sidebar.classList.toggle('active');   // Sidebar slide
+});
+</script>
+
+</body>
+</html>

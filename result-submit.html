@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TYP MatchDay Result Submission</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #0d1117;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        width: 350px;
+        border-radius: 12px;
+        overflow: hidden; /* বক্সের রাউন্ডিং ঠিক রাখতে */
+        box-shadow: 0 0 25px rgba(52,152,219,0.4);
+        text-align: center;
+    }
+
+    /* উপরের অংশ: গাঢ় নীল */
+    .top-box {
+        background-color: #1e2a38; /* গাঢ় নীল */
+        padding: 25px 15px;
+        color: #3498db;
+    }
+
+    .top-box h1 {
+        font-size: 1.8rem;
+        margin: 0 0 10px;
+    }
+
+    .top-box h2 {
+        font-size: 0.80rem;
+        margin: 0;
+        opacity: 0.8;
+        color: #ecf0f1;
+    }
+
+    /* নিচের অংশ: সাদা */
+    .bottom-box {
+        background-color: #ffffff;
+        padding: 25px 15px;
+        color: #0d1117;
+    }
+
+    .bottom-box h3 {
+        margin: 0 0 10px;
+        font-size: 1.1rem;
+    }
+
+    .bottom-box p {
+        margin: 5px 0 15px;
+        font-size: 0.9rem;
+        color: #555555;
+    }
+
+    .bottom-box input[type="password"] {
+        width: 95%;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1.5px solid #3498db;
+        font-size: 1rem;
+        margin-bottom: 15px;
+        outline: none;
+    }
+
+    .bottom-box button {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: none;
+        background-color: #3498db;
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .bottom-box button:hover {
+        background-color: #5dade2;
+    }
+
+    .success-message, .error-message {
+        display: none;
+        margin-top: 10px;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .success-message { color: #2ecc71; }
+    .error-message { color: #e74c3c; }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    <!-- উপরের অংশ -->
+    <div class="top-box">
+        <h1>TYP MATCHDAY</h1>
+        <h2>Tournament Result Submission ✔</h2>
+    </div>
+
+    <!-- নিচের অংশ -->
+    <div class="bottom-box">
+        <h3>Secure Access</h3>
+        <p style="font-size:0.6rem; text-align:left; margin-top:0.9px;">
+    ‎‎ ‎  Enter Password* </p>
+        <input type="password" id="password" placeholder="Enter your password">
+        <p style="font-size:0.6rem; text-align:left:01x margin-top:00px;">
+    Enter the Manager password to access the submission form
+</p>
+        <button onclick="checkPassword()"> 🔓 Unlock Form</button>
+
+        <div class="success-message" id="success">Access Granted! Redirecting...</div>
+        <div class="error-message" id="error">Incorrect Password! Try Again.</div>
+    </div>
+</div>
+
+<script>
+    const correctPassword = "ARAFAT GAY"; // তুমি চাইলে পরিবর্তন করতে পারো
+
+    function checkPassword() {
+        const input = document.getElementById('password').value;
+        const successMsg = document.getElementById('success');
+        const errorMsg = document.getElementById('error');
+
+        if(input === correctPassword){
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'block';
+            setTimeout(() => {
+                window.location.href = "result-photo.html"; // তোমার result submission page link
+            }, 1500);
+        } else {
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
