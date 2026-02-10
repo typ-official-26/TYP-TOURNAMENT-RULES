@@ -184,7 +184,7 @@ option:disabled {
     margin-top: 5px;
     color: #ecf0f1;
     position: relative; /* overlay এর জন্য */
-    overflow: hidden;
+    overflow: relative;
 }
 
 /* Logo overlay */
@@ -309,7 +309,17 @@ option:disabled {
             <span class="player-name" id="playerB7">Player 7
                 <div class="dropdown" id="dropdownB7"></div>
             </span>
+            </div>
+<div class="player-row">
+    <span class="player-name" id="playerA8">Player 8
+        <div class="dropdown" id="dropdownA8"></div>
+    </span>
+    <span class="player-score"><span contenteditable="true">0</span><span class="pipe">|</span><span contenteditable="true">0</span></span>
+            <span class="player-name" id="playerB8">Player 8
+                <div class="dropdown" id="dropdownB8"></div>
+            </span>
         </div>
+        
     </div>
 </div>
 
@@ -351,12 +361,12 @@ function updateOptions(){
 
 // Team player mapping
 const teamPlayers = {
-    "BARISHAL BULLS": ["RITTIK","SAJID","SAAD","MURAD","NEZAM","AYAN","SAJJAD"],
-    "HYPER MUNSHIGANJ": ["PlayerA1","PlayerA2","PlayerA3","PlayerA4","PlayerA5","PlayerA6","PlayerA7"],
-    "TANGAIL EXPRESS": ["PlayerB1","PlayerB2","PlayerB3","PlayerB4","PlayerB5","PlayerB6","PlayerB7"],
-    "NOAKHALI AVIATION": ["PlayerC1","PlayerC2","PlayerC3","PlayerC4","PlayerC5","PlayerC6","PlayerC7"],
-    "DHAKA ALLIANCE": ["PlayerD1","PlayerD2","PlayerD3","PlayerD4","PlayerD5","PlayerD6","PlayerD7"],
-    "CHATTOGRAM FC": ["PlayerE1","PlayerE2","PlayerE3","PlayerE4","PlayerE5","PlayerE6","PlayerE7"]
+    "BARISHAL BULLS": ["RB Mahbub","RB Weird","RB Ali ","RB Rahat ","RB Dipto ","RB junaeid","RB Rusho","RB Minahz ","RB Rittik","RB Akhil"],
+    "HYPER MUNSHIGANJ": ["HM Tasin","HM Amtiyaz","HM Ifaz","HM Munna","HM Jihad","HM Suhag","HM Muhimin","HM Rayan"," HM JONY","HM SOPNIL"],
+    "TANGAIL EXPRESS": ["TG Sudipta","TG samiul","TG Shadin","TG Areez","TG Aabid","TG Abid Islam","TG Dipu","TG Rafi","TG Jidan","TG Safwan"],
+    "NOAKHALI AVIATION": ["NA Azmain ","NA Nehal","NA Tahmid","NA  Tariq ","NA Fakhrul ","NA Yasin ","NA Shahja","NA Rafi uddin","NA Sifat","NA Tasfiqul"],
+    "DHAKA ALLIANCE": ["DA Murad","DA Fahad ","DA Afrin","DA Salman","DA Mdsajjab ","DA Tawfiq ","DA Jarif ","DA Shakib ","DA Ronit ","DA Tahajeebur"],
+    "CHATTOGRAM FC": ["CTG Saad ","CTG Kopil","CTG David","CTG Sipp","CTG Shahriar","CTG Faisal","CTG SULEMAN","CTG Shohag","CTG Shakib","CTG SAAD Jr."]
 };
 
 // Track selected players to disable
@@ -399,7 +409,7 @@ function setupDropdown(spanId, dropdownId){
 }
 
 // Setup all player spans
-for(let i=1;i<=7;i++){
+for(let i=1;i<=8;i++){
     setupDropdown("playerA"+i,"dropdownA"+i);
     setupDropdown("playerB"+i,"dropdownB"+i);
 }
@@ -410,5 +420,66 @@ teamA.addEventListener('change', updateOptions);
 teamB.addEventListener('change', updateOptions);
 
 </script>
+<script>
+const scores = document.querySelectorAll('.editable');
+
+scores.forEach((el, index) => {
+
+  el.addEventListener('keydown', e => {
+
+    // শুধু সংখ্যা, backspace, space allow
+    if (
+      !/[0-9]/.test(e.key) &&
+      e.key !== 'Backspace' &&
+      e.key !== ' '
+    ) {
+      e.preventDefault();
+    }
+
+    // Space → next score
+    if (e.key === ' ') {
+      e.preventDefault();
+      focusNext(index);
+    }
+
+    // Backspace → আগের score
+    if (e.key === 'Backspace' && el.innerText.length === 0) {
+      e.preventDefault();
+      focusPrev(index);
+    }
+  });
+
+  el.addEventListener('input', () => {
+    // 2 digit হলে auto next
+    if (el.innerText.length >= 2) {
+      el.innerText = el.innerText.slice(0, 2);
+      focusNext(index);
+    }
+  });
+
+});
+
+function focusNext(i) {
+  if (scores[i + 1]) {
+    setFocus(scores[i + 1]);
+  }
+}
+
+function focusPrev(i) {
+  if (scores[i - 1]) {
+    setFocus(scores[i - 1]);
+  }
+}
+
+function setFocus(el) {
+  el.focus();
+  const range = document.createRange();
+  const sel = window.getSelection();
+  range.selectNodeContents(el);
+  range.collapse(false);
+  sel.removeAllRanges();
+  sel.addRange(range);
+}
+</script>
 </body>
-</html>
+    </html>
